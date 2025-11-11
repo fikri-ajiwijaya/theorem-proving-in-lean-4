@@ -1,0 +1,25 @@
+{
+	"build": {
+		"args": {
+			"workspaceFolder": "${containerWorkspaceFolder}"
+		},
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"leanprover.lean4",
+				"ms-azuretools.vscode-containers"
+			]
+		}
+	},
+	"mounts": [
+		{
+			"source": "${localWorkspaceFolder}",
+			"target": "${containerWorkspaceFolder}/host",
+			"type": "bind"
+		}
+	],
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceMount": "source=${localWorkspaceFolderBasename},target=${containerWorkspaceFolder},type=volume"
+}
