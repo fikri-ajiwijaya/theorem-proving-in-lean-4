@@ -169,3 +169,91 @@ namespace chapter2_experiment13
 
   #check F
 end chapter2_experiment13
+
+namespace chapter2_example14
+  #check fun (x : Nat) => x + 5
+  #check λ (x : Nat) => x + 5
+  #check fun x => x + 5
+  #check λ x => x + 5
+end chapter2_example14
+
+namespace chapter2_experiment14
+  def F := λ x ↦ x + 5
+  def G : Nat → Nat := λ x ↦ x + 5
+
+  #check F
+  #check G
+end chapter2_experiment14
+
+namespace chapter2_example15
+  #eval (λ x : Nat => x + 5) 10
+end chapter2_example15
+
+
+namespace chapter2_experiment15
+  set_option linter.unusedVariables false
+
+  variable (α β : Type)
+
+  #check α
+  #check β
+
+  variable (t : β)
+
+  #check t
+  #check λ x : α ↦ t
+  #check (λ x ↦ t : α → β)
+
+  def F : α → β := λ x ↦ t
+  #check F
+  #check (F)
+end chapter2_experiment15
+
+namespace chapter2_example16
+  #check fun x : Nat => fun y : Bool => if not y then x + 1 else x + 2
+  #check fun (x : Nat) (y : Bool) => if not y then x + 1 else x + 2
+  #check fun x y => if not y then x + 1 else x + 2
+end chapter2_example16
+
+namespace chapter2_example17
+  set_option linter.unusedVariables false
+
+  def f (n : Nat) : String := toString n
+  def g (s : String) : Bool := s.length > 0
+
+  #check fun x : Nat => x
+  #check fun x : Nat => true
+  #check fun x : Nat => g (f x)
+  #check fun x => g (f x)
+end chapter2_example17
+
+namespace chapter2_example18
+  #check fun (g : String → Bool) (f : Nat → String) (x : Nat) => g (f x)
+end chapter2_example18
+
+namespace chapter2_experiment18
+  #check (λ g f x ↦ g (f x) : (String → Bool) → (Nat → String) → Nat → Bool)
+end chapter2_experiment18
+
+namespace chapter2_example19
+  #check fun (α β γ : Type) (g : β → γ) (f : α → β) (x : α) => g (f x)
+end chapter2_example19
+
+namespace chapter2_example20
+  set_option linter.unusedVariables false
+
+  #check (fun x : Nat => x) 1
+  #check (fun x : Nat => true) 1
+
+  def f (n : Nat) : String := toString n
+  def g (s : String) : Bool := s.length > 0
+
+  #check (fun (α β γ :Type) (u : β → γ) (v : α → β) (x : α) => u (v x)) Nat String Bool g f 0
+end chapter2_example20
+
+namespace chapter2_example21
+  set_option linter.unusedVariables false
+
+  #eval (fun x : Nat => x) 1
+  #eval (fun x : Nat => true) 1
+end chapter2_example21
