@@ -436,3 +436,158 @@ namespace chapter2_example42
     def doThrice := h (h (h x))
   end useful
 end chapter2_example42
+
+namespace chapter2_example43
+  namespace Foo
+    def a : Nat := 5
+    def f (x : Nat) : Nat := x + 7
+
+    def fa : Nat := f a
+    def ffa : Nat := f (f a)
+
+    #check a
+    #check f
+    #check fa
+    #check ffa
+    #check Foo.fa
+  end Foo
+
+  -- #check a
+  -- #check f
+  #check Foo.a
+  #check Foo.f
+  #check Foo.fa
+  #check Foo.ffa
+
+  open Foo
+
+  #check a
+  #check f
+  #check fa
+  #check Foo.fa
+end chapter2_example43
+
+namespace chapter2_example45
+  #check List.nil
+  #check List.cons
+  #check List.map
+end chapter2_example45
+
+namespace chapter2_example46
+  open List
+
+  #check nil
+  #check cons
+  #check map
+end chapter2_example46
+
+namespace chapter2_example47
+  namespace Foo
+    def a : Nat := 5
+    def f (x : Nat) : Nat := x + 7
+
+    def fa : Nat := f a
+
+    namespace Bar
+      def ffa : Nat := f (f a)
+
+      #check fa
+      #check ffa
+    end Bar
+
+    #check fa
+    #check Bar.ffa
+  end Foo
+
+  #check Foo.fa
+  #check Foo.Bar.ffa
+
+  open Foo
+
+  #check fa
+  #check Bar.ffa
+end chapter2_example47
+
+namespace chapter2_experiment47
+  variable (a : Nat)
+  def x := 0
+
+  namespace test1
+    variable (b : Bool)
+    def y := false
+
+    #check a
+    #check b
+    #check x
+    #check y
+  end test1
+
+  namespace test2
+    variable (b : String)
+    def y := "hello"
+
+    #check a
+    #check b
+    #check x
+    #check y
+  end test2
+
+  #check a
+  -- #check b
+  -- #check test1.b
+  -- #check test2.b
+  #check x
+  -- #check y
+  #check test1.y
+  #check test2.y
+
+  namespace test1
+    #check a
+    -- #check b
+    -- #check test1.b
+    -- #check test2.b
+    #check x
+    #check y
+    #check test1.y
+    #check test2.y
+  end test1
+
+  namespace test2
+    #check a
+    -- #check b
+    -- #check test1.b
+    -- #check test2.b
+    #check x
+    #check y
+    #check test1.y
+    #check test2.y
+  end test2
+
+  section
+    open test1
+    open test2
+
+    #check a
+    -- #check b
+    -- #check test1.b
+    -- #check test2.b
+    #check x
+    #check y
+    #check test1.y
+    #check test2.y
+  end
+
+  section
+    open test2
+    open test1
+
+    #check a
+    -- #check b
+    -- #check test1.b
+    -- #check test2.b
+    #check x
+    #check y
+    #check test1.y
+    #check test2.y
+  end
+end chapter2_experiment47
