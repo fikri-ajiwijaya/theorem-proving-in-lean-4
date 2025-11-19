@@ -591,3 +591,74 @@ namespace chapter2_experiment47
     #check test2.y
   end
 end chapter2_experiment47
+
+namespace chapter2_example48
+  def cons (α : Type) (a : α) (as : List α) : List α :=
+    List.cons a as
+
+  #check cons Nat
+  #check cons Bool
+  #check cons
+end chapter2_example48
+
+namespace chapter2_experiment48
+  section
+    variable (α : Type)
+    variable (β : α → Type)
+    variable (f : (a : α) → β a)
+
+    #check @α
+    #check @β
+    #check @f
+  end
+
+  universe u v
+
+  #check ∀ {α : Type u} {β : Type v}, α → β
+  #check ∀ {α : Type u} {β : Type u → Type v}, α → β α
+  #check ∀ {α : Type u} {β : α → Type v}, (a : α) → β a
+
+  #check ∀ {α : Type u} {β : Type v}, α × β
+  #check ∀ {α : Type u} {β : Type u → Type v}, α × β α
+  #check ∀ {α : Type u} {β : α → Type v}, (a : α) × β a
+end chapter2_experiment48
+
+namespace chapter2_example49
+  #check @List.cons
+  #check @List.nil
+  #check @List.length
+  #check @List.append
+end chapter2_example49
+
+namespace chapter2_experiment49
+  universe u
+
+  #check @List
+  example : Type u → Type u := @List
+
+  -- #check @List.nil
+  -- example :
+  --   ∀ {β : Type u → Type u}, (α : Type u) → β α
+  -- :=
+  --   @List.nil
+end chapter2_experiment49
+
+namespace chapter2_example50
+  universe u v
+
+  def f (α : Type u) (β : α → Type v) (a : α) (b : β a) : (a : α) × β a :=
+    ⟨a, b⟩
+
+  def g (α : Type u) (β : α → Type v) (a : α) (b : β a) : Σ a : α, β a :=
+    Sigma.mk a b
+
+  def h1 (x : Nat) : Nat :=
+    (f Type (fun α => α) Nat x).2
+
+  #eval h1 5
+
+  def h2 (x : Nat) : Nat :=
+    (g Type (fun α => α) Nat x).2
+
+  #eval h2 5
+end chapter2_example50
