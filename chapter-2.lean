@@ -257,3 +257,81 @@ namespace chapter2_example21
   #eval (fun x : Nat => x) 1
   #eval (fun x : Nat => true) 1
 end chapter2_example21
+
+namespace chapter2_example22
+  def double (x : Nat) : Nat :=
+    x + x
+end chapter2_example22
+
+namespace chapter2_example23
+  def double (x : Nat) : Nat :=
+    x + x
+
+  #eval double 3
+end chapter2_example23
+
+namespace chapter2_example25
+  def double : Nat → Nat :=
+    fun x => x + x
+
+  #eval double 3
+end chapter2_example25
+
+namespace chapter2_example26
+  def double :=
+    fun (x : Nat) => x + x
+end chapter2_example26
+
+namespace chapter2_example27
+  def pi := 3.141592654
+end chapter2_example27
+
+namespace chapter2_example28
+  def add (x y : Nat) :=
+    x + y
+
+  #eval add 3 2
+end chapter2_example28
+
+namespace chapter2_example29
+  def double : Nat → Nat := λ x ↦ x + x
+
+  def add (x : Nat) (y : Nat) :=
+    x + y
+
+  #eval add (double 3) (7 + 9)
+end chapter2_example29
+
+namespace chapter2_example30
+  def greater (x y : Nat) :=
+    if x > y then x
+    else y
+end chapter2_example30
+
+namespace chapter2_example31
+  def double : Nat → Nat := λ x ↦ x + x
+
+  def doTwice (f : Nat → Nat) (x : Nat) : Nat :=
+    f (f x)
+
+  #eval doTwice double 2
+end chapter2_example31
+
+namespace chapter2_example32
+  def compose (α β γ : Type) (g : β → γ) (f : α → β) (x : α) : γ :=
+    g (f x)
+end chapter2_example32
+
+namespace chapter2_example33
+  def compose :
+    ∀ {α β γ : Type}, (β → γ) → (α → β) → α → γ
+  :=
+    λ g f x ↦ g (f x)
+
+  def double : Nat → Nat := λ x ↦ x + x
+
+  def square (x : Nat) : Nat :=
+    x * x
+
+  #eval @compose Nat Nat Nat double square 3
+end chapter2_example33
