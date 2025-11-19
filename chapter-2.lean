@@ -662,3 +662,102 @@ namespace chapter2_example50
 
   #eval h2 5
 end chapter2_example50
+
+namespace chapter2_example51
+  def Lst.{u} : Type u → Type u := List
+  def Lst.cons.{u} : (α : Type u) → α → Lst α → Lst α := @List.cons
+  def Lst.nil.{u} : (α : Type u) → Lst α := @List.nil
+  def Lst.append.{u} : (α : Type u) → Lst α → Lst α → Lst α := @List.append
+
+  #check Lst
+  #check Lst.cons
+  #check Lst.nil
+  #check Lst.append
+end chapter2_example51
+
+namespace chapter2_example52
+  def Lst.{u} : Type u → Type u := List
+  def Lst.cons.{u} : (α : Type u) → α → Lst α → Lst α := @List.cons
+  def Lst.nil.{u} : (α : Type u) → Lst α := @List.nil
+  def Lst.append.{u} : (α : Type u) → Lst α → Lst α → Lst α := @List.append
+
+  def as : Lst Nat := Lst.nil Nat
+  def bs : Lst Nat := Lst.cons Nat 5 (Lst.nil Nat)
+
+  #check Lst.append Nat as bs
+end chapter2_example52
+
+namespace chapter2_example53
+  def Lst.{u} : Type u → Type u := List
+  def Lst.cons.{u} : (α : Type u) → α → Lst α → Lst α := @List.cons
+  def Lst.nil.{u} : (α : Type u) → Lst α := @List.nil
+  def Lst.append.{u} : (α : Type u) → Lst α → Lst α → Lst α := @List.append
+
+  def as : Lst Nat := Lst.nil _
+  def bs : Lst Nat := Lst.cons _ 5 (Lst.nil _)
+
+  #check Lst.append _ as bs
+end chapter2_example53
+
+namespace chapter2_example55
+  universe u
+
+  def Lst (α : Type u) : Type u := List α
+  def Lst.cons {α : Type u} (a : α) (as : Lst α) : Lst α := List.cons a as
+  def Lst.nil {α : Type u} : Lst α := List.nil
+  def Lst.append {α : Type u} (as bs : Lst α) : Lst α := List.append as bs
+
+  #check Lst.cons 0 Lst.nil
+
+  def as : Lst Nat := Lst.nil
+  def bs : Lst Nat := Lst.cons 5 Lst.nil
+
+  #check Lst.append as bs
+end chapter2_example55
+
+namespace chapter2_example56
+  universe u
+  def ident {α : Type u} (x : α) := x
+
+  #check ident
+  #check ident 1
+  #check ident "hello"
+  #check @ident
+end chapter2_example56
+
+namespace chapter2_example57
+  universe u
+
+  section
+    variable {α : Type u}
+    variable (x : α)
+    def ident := x
+  end
+
+  #check ident
+  #check ident 1
+  #check ident "hello"
+end chapter2_example57
+
+namespace chapter2_example58
+  #check List.nil
+  #check id
+
+  #check (List.nil : List Nat)
+  #check (id : Nat → Nat)
+end chapter2_example58
+
+namespace chapter2_example59
+  #check 2
+  #check (2 : Nat)
+  #check (2 : Int)
+end chapter2_example59
+
+namespace chapter2_example60
+  #check @id
+  #check @id Nat
+  #check @id Bool
+
+  #check @id Nat 1
+  #check @id Bool true
+end chapter2_example60
