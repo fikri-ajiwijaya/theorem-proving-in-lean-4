@@ -335,3 +335,54 @@ namespace chapter2_example33
 
   #eval @compose Nat Nat Nat double square 3
 end chapter2_example33
+
+namespace chapter2_example35
+  #check let y := 2 + 2; y * y
+  #eval  let y := 2 + 2; y * y
+
+  def twice_double (x : Nat) : Nat :=
+    let y := x + x; y * y
+
+  #eval twice_double 2
+end chapter2_example35
+
+namespace chapter2_example36
+  #check let y := 2 + 2; let z := y + y; z * z
+  #eval  let y := 2 + 2; let z := y + y; z * z
+end chapter2_example36
+
+namespace chapter2_example37
+  def t (x : Nat) : Nat :=
+    let y := x + x
+    y * y
+end chapter2_example37
+
+namespace chapter2_example38
+  set_option diagnostics true
+
+  def foo := let a := Nat; fun x : a => x + 2
+  -- def bar := (fun a => fun x : a => x + 2) Nat
+end chapter2_example38
+
+namespace chapter2_experiment38
+  set_option diagnostics true
+
+  def f1 := let a := Nat; λ (x : a) ↦ x + 2
+  -- def f2 := λ a (x : a) ↦ x + 2
+  -- def f3 := λ (a : Type) (x : a) ↦ x + 2
+  def f4 : Nat → Nat := λ x ↦ x + 2
+  def α := Nat
+  -- def f5 := λ (x : α) ↦ x + 2
+  -- def f6 : α → α := λ x ↦ x + 2
+  -- def f7 : α → α → α := λ x y ↦ x + y
+  def f8 : Nat → Nat → Nat := λ x y ↦ x + y
+
+  #check f1
+  -- #check f2
+  -- #check f3
+  #check f4
+  -- #check f5
+  -- #check f6
+  -- #check f7
+  #check f8
+end chapter2_experiment38
